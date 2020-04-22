@@ -4,6 +4,7 @@
 let time = 0 //Time (in seconds) the user has been taking the quiz, for the timer
 let answered = false //Has the user answered this question?
 let index = 0 //What question are we on?
+let score = 0 //What is the player's current score?
 
 
 //Make a question class
@@ -43,11 +44,13 @@ function buttonHandler(buttonType) {
       break;
     case 'incorrect':
       console.log('Incorrect answer')
+      score -=1
       index++
       index == listOfQuestions.length ? endHandler() : questionHandler(listOfQuestions)
       break;
     case 'correct':
       console.log('Correct answer')
+      score +=1
       index++
       index == listOfQuestions.length ? endHandler() : questionHandler(listOfQuestions)
       break;
@@ -58,7 +61,8 @@ function buttonHandler(buttonType) {
 }
 
 function endHandler(){
-  console.log('I\'m a pretty boy')
+  console.log('endHandler was called')
+  document.getElementById('quiz').innerHTML = `<div class = "text-left">\n <h1>Looks like the quiz is over!</h1>\n <p>Your final score is ${score}</p>\n </div>`
 }
 
 function quizHandler() {
