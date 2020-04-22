@@ -6,9 +6,6 @@ function quizWrapper(){
   console.log('Quiz wrapper activated')
   //Handles the start of the quiz
 
-  //Initialize some variables
-  let startQuiz = false
-
   //Display the starting screen: just a "start the quiz" button for now
   document.getElementById('quiz').innerHTML = '<button type="button" onclick = "buttonHandler(`start`)" id="startBtn" class="btn btn-danger">Start the Quiz!</button>'
 
