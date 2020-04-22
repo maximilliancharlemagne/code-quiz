@@ -62,13 +62,20 @@ function questionDisplayer(question,elementID){
 
   //Construct the proper CSS
   css = `<h1>${question.title}</h1>\n <p>${question.description}</p>\n`
+  /*
+  To Do
 
+  1. Answers should be buttons, so you can click on them
+  */
+ 
   if (question.answers.length > 0){
-    css+=`<ol>\n`
+    css+=`<div class = "text-left">`
+    css+=`  <ol>\n`
     for (let index in question.answers){
-      css+=`  <li>${question.answers[index]}</li>\n`
+      css+=`    <li>${question.answers[index]}</li>\n`
     }
-    css+=`</ol>`
+    css+=`  </ol>`
+    css+=`</div>`
   }
   document.getElementById(elementID).innerHTML = css
 }
