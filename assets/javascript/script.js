@@ -44,6 +44,7 @@ function quizHandler() {
   let myTimer = window.setInterval(timerUpdater, 1000)
   
   //Display the first question until it is answered, then display the next question, and so on
+  questionDisplayer(question1,'quiz')
 
   //Once all questions have been answered, display the user's score
 }
@@ -62,18 +63,12 @@ function questionDisplayer(question,elementID){
   //Construct the proper CSS
   css = `<h1>${question.title}</h1>\n <p>${question.description}</p>\n`
 
-  for (let index in question.answers){
+  if (question.answers.length > 0){
+    css+=`<ol>\n`
+    for (let index in question.answers){
+      css+=`  <li>${question.answers[index]}</li>\n`
+    }
+    css+=`</ol>`
   }
-  //document.getElementById(elementID) = `<h1>${question.title}</h1>\n <p>${question.description}</p>\n`
-
-  /*
-    Make the CSS template
-
-    h1 question.title
-    p question.description
-    ol
-      for index in question.answers
-      li question.answers[index]
-    /ol
-  */
+  document.getElementById(elementID).innerHTML = css
 }
