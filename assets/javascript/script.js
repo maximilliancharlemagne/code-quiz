@@ -1,18 +1,23 @@
 // a javascript file
+
+let time = 0
+
 function quizWrapper(){
+  console.log('Quiz wrapper activated')
   //Handles the start of the quiz
 
   //Initialize some variables
   let startQuiz = false
 
   //Display the starting screen: just a "start the quiz" button for now
-  document.getElementById('quiz').innerHTML = '<button type="button" id="startBtn" class="btn btn-danger">Start the Quiz!</button>'
+  document.getElementById('quiz').innerHTML = '<button type="button" onclick = "buttonHandler(`start`)" id="startBtn" class="btn btn-danger">Start the Quiz!</button>'
 
   //Write an event listener to listen to when the "Start the Quiz!" button is clicked
-  document.getElementById("startBtn").addEventListener("click", buttonHandler('start'));
+  // document.getElementById("startBtn").addEventListener("click", buttonHandler('start'));
 }
 
 function buttonHandler(buttonType) {
+  console.log('Start button pressed')
   switch (buttonType) {
     case 'start':
       quizHandler()
@@ -24,6 +29,7 @@ function buttonHandler(buttonType) {
 }
 
 function quizHandler() {
+  console.log('Quiz handler was called')
   //Make a question class
   class question {
     constructor(title, description, arr_of_answers) {
@@ -38,18 +44,17 @@ function quizHandler() {
   const question2 = new question('Question 2', 'What will be the result of the following code?\n let num = 5\n let sum = num + 3\n console.log(sum)', ['3 will be logged to the console', '8 will be logged to the console', '2 will be logged to the console', 'The code will result in an error'])
 
   //Start the timer
-  timer(1000)
+  let myTimer = window.setInterval(timerUpdater, 1000)
+  
   //Display the first question until it is answered, then display the next question, and so on
 
   //Once all questions have been answered, display the user's score
 }
 
-function timer(interval) {
-  setInterval(timerUpdater, interval)
-}
-
 function timerUpdater() {
-
+  time++
+  document.getElementById('time').innerHTML = `Time: ${time}`
+  console.log("Time updated")
 }
 
 function questionDisplayer(question,elementID){
