@@ -22,4 +22,15 @@ function questionDisplayer(question,elementID){
   //Given a question object, writes the proper CSS
   // to display that question to the .innerHTML property of the
   // HTML element with id = elementID
+
+  /*
+    Make the CSS template
+
+    h1 question.title
+    p question.description
+    ol
+      for index in question.answers
+      li question.answers[index]
+    /ol
+  */
 }
