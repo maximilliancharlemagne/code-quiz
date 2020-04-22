@@ -19,7 +19,7 @@ class question {
 
 //Use the question class to make an object for each question
 const question1 = new question('Question 1', 'Which of the below is a valid keyword for declaring a variable in Javascript?', ['var', 'let', 'const', 'All of the above'], 3)
-const question2 = new question('Question 2', 'What will be the result of the following code?\n let num = 5\n let sum = num + 3\n console.log(sum)', ['3 will be logged to the console', '8 will be logged to the console', '2 will be logged to the console', 'The code will result in an error'], 1)
+const question2 = new question('Question 2', 'What will be the result of the following code? <br> <br> let num = 5 <br> let sum = num + 3 <br> console.log(sum)', ['3 will be logged to the console', '8 will be logged to the console', '2 will be logged to the console', 'The code will result in an error'], 1)
 
 //Make a list of all the questions
 let listOfQuestions = [question1, question2]
