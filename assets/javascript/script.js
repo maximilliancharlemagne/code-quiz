@@ -5,6 +5,16 @@ let time = 60 //Time (in seconds) the user has remaining for the quiz
 let myTimer //timer variable
 let index = 0 //What question are we on?
 let score = 0 //What is the player's current score?
+let scores = [] //array of high scores (score objects)
+
+//Make a score class
+class score {
+  constructor(name,score,time){
+    this.name = name;
+    this.score = score;
+    this.time = time;
+  }
+}
 
 
 //Make a question class
