@@ -33,9 +33,6 @@ function quizWrapper(){
   document.getElementById('quiz').innerHTML = '<button type="button" onclick = "buttonHandler(`start`)" id="startBtn" class="btn btn-danger">Start the Quiz!</button>'
 
   document.getElementById('time').innerHTML = `Time Remaining: ${Math.floor(time / 60)} minutes ${time % 60} seconds`
-
-  //Write an event listener to listen to when the "Start the Quiz!" button is clicked
-  // document.getElementById("startBtn").addEventListener("click", buttonHandler('start'));
 }
 
 function buttonHandler(buttonType) {
