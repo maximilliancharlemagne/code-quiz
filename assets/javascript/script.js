@@ -65,13 +65,21 @@ function endHandler(){
   console.log('endHandler was called')
   window.clearInterval(myTimer)
   document.getElementById('time').innerHTML = `Time Remaining: ${Math.floor(time / 60)} minutes ${time % 60} seconds`
-  let endMessage = `<div class = "text-left">\n <h1>Looks like the quiz is over!</h1>\n <p>Your final score is ${score}. ` 
+  let endMessage = `<div class = "text-center">\n <h1>Looks like the quiz is over!</h1>\n <p>Your final score is ${score}. ` 
   if(time>0){
     endMessage += `You completed the quiz with ${Math.floor(time / 60)} minutes ${time % 60} seconds of time remaining. </p>\n </div>`
   }
   else{
     endMessage += `You ran out of time! </p>\n </div>`
   }
+  endMessage += `<br>`
+  endMessage += `<form>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Enter a name for the high score table</label>
+    <input type="text" class="form-control" id="nameForTable" placeholder="Tom Bombadil">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>`
   document.getElementById('quiz').innerHTML = endMessage
 }
 
