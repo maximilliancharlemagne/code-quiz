@@ -42,7 +42,7 @@ function highScoreHandler(){
   console.log('highScoreHandler called')
   document.body.innerHTML = `  <div class="row mt-3">
     <div class="ml-5 col text-left">
-      <a href="../index.html" id="backToQuiz" class="btn btn-primary">Return to Quiz</a>
+      <a onclick="quizWrapper()" id="backToQuiz" class="btn btn-primary">Return to Quiz</a>
     </div>
   </div>
   <div class="row">
@@ -54,24 +54,27 @@ function highScoreHandler(){
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Score</th>
-            <th scope="col">Time</th>
+            <th scope="col">Time Remaining</th>
           </tr>
         </thead>
         <tbody id = "myTable">
           <tr>
             <th scope="row">1</th>
+            <td>1</td>
             <td>Mark</td>
             <td>Otto</td>
             <td>@mdo</td>
           </tr>
           <tr>
             <th scope="row">2</th>
+            <td>2</td>
             <td>Jacob</td>
             <td>Thornton</td>
             <td>@fat</td>
           </tr>
           <tr>
             <th scope="row">3</th>
+            <td>3</td>
             <td>Larry</td>
             <td>the Bird</td>
             <td>@twitter</td>
@@ -82,11 +85,25 @@ function highScoreHandler(){
     <div class="col-md-2"></div>
   </div>`
   let newHTML = ''
+  scores.sort(function(obj1,obj2){
+    //if -1 is returned, obj1 goes befre obj2
+    console.log(`Score 1: ${obj1.score}`)
+    console.log(`Score 2: ${obj2.score}`)
+    if (parseInt(obj1.score) >= parseInt(obj2.score)){
+      console.log(`${obj1.score} goes first`)
+      return -1
+    }else{
+      console.log(`${obj2.score} goes first`)
+      return 1
+    }
+    //if 1 is returned, score2 goes before score1
+  })
+  console.log(scores)
   for (let index in scores) {
     //do the thing to the high score table
     console.log(`Writing ${scores[index].name}'s score to the table`)
     newHTML += `<tr>\n
-            <th scope="row">1</th>\n
+            <th scope="row">${parseInt(index)+1}</th>\n
             <td>${scores[index].name}</td>\n
             <td>${scores[index].score}</td>\n
             <td>${scores[index].time}</td>\n
@@ -97,8 +114,29 @@ function highScoreHandler(){
 
 function quizWrapper(){
   console.log('Quiz wrapper activated')
+  index = 0
+  console.log('Index reset')
+  time = 60
+  console.log('Time reset')
+  myScore = 0
+  console.log('Score reset')
   //Handles the start of the quiz
-
+  document.body.innerHTML = `  <div class="row mt-3">
+    <div class="ml-5 col text-left">
+      <a onclick="highScoreHandler()" id="highScores" class="btn btn-primary">High Scores</a>
+    </div>
+    <div class="mr-5 col text-right">
+      <p id = "time">Time Remaining: 10 minutes 0 seconds</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div id = "quiz" class="col-md-6 bg-light text-center py-2">
+      <!-- The quiz -->
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+  <script src="./assets/javascript/script.js"></script>`
   //Display the starting screen: just a "start the quiz" button for now
   document.getElementById('quiz').innerHTML = '<button type="button" onclick = "buttonHandler(`start`)" id="startBtn" class="btn btn-danger">Start the Quiz!</button>'
 
@@ -110,7 +148,7 @@ function buttonHandler(buttonType) {
   switch (buttonType) {
     case 'start':
       console.log('Start button pressed')
-      quizHandler(false)
+      quizHandler()
       break;
     case 'incorrect':
       console.log('Incorrect answer')
