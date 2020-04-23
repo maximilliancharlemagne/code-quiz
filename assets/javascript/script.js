@@ -38,6 +38,63 @@ const question5 = new question('Question 5', 'What does the term \'API\' stand f
 //Make a list of all the questions
 let listOfQuestions = [question1, question2, question3, question4, question5]
 
+function highScoreHandler(){
+  console.log('highScoreHandler called')
+  document.body.innerHTML = `  <div class="row mt-3">
+    <div class="ml-5 col text-left">
+      <a href="../index.html" id="backToQuiz" class="btn btn-primary">Return to Quiz</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Score</th>
+            <th scope="col">Time</th>
+          </tr>
+        </thead>
+        <tbody id = "myTable">
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-2"></div>
+  </div>`
+  let newHTML = ''
+  for (let index in scores) {
+    //do the thing to the high score table
+    console.log(`Writing ${scores[index].name}'s score to the table`)
+    newHTML += `<tr>\n
+            <th scope="row">1</th>\n
+            <td>${scores[index].name}</td>\n
+            <td>${scores[index].score}</td>\n
+            <td>${scores[index].time}</td>\n
+          </tr>\n`
+  }
+  document.getElementById('myTable').innerHTML = newHTML
+}
+
 function quizWrapper(){
   console.log('Quiz wrapper activated')
   //Handles the start of the quiz
@@ -75,10 +132,7 @@ function buttonHandler(buttonType) {
       name = elem.value
       newHighScore = new highScore(name, myScore, time)
       scores.push(newHighScore)
-      //write some stuff to the high score table
-      for(let index in scores){
-        //do the thing to the high score table
-      }
+      highScoreHandler()
       break;
     default:
       break;
