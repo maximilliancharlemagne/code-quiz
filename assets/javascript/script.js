@@ -6,6 +6,7 @@ let myTimer //timer variable
 let index = 0 //What question are we on?
 let myScore = 0 //What is the player's current score?
 let scores = [] //array of high scores (score objects)
+let name = 'John Doe'//temporary variable until I get the form working
 
 // Make a high score class
 class highScore {
@@ -84,6 +85,8 @@ function endHandler(){
   else{
     endMessage += `You ran out of time! </p>\n </div>`
   }
+  newHighScore = new highScore(name,myScore,time)
+  scores.push(newHighScore)
   endMessage += `<br>`
   endMessage += `<form>
   <div class="form-group">
