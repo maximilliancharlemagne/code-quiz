@@ -4,11 +4,11 @@
 let time = 60 //Time (in seconds) the user has remaining for the quiz
 let myTimer //timer variable
 let index = 0 //What question are we on?
-let score = 0 //What is the player's current score?
+let myScore = 0 //What is the player's current score?
 let scores = [] //array of high scores (score objects)
 
-//Make a score class
-class score {
+// Make a high score class
+class highScore {
   constructor(name,score,time){
     this.name = name;
     this.score = score;
@@ -56,14 +56,14 @@ function buttonHandler(buttonType) {
       break;
     case 'incorrect':
       console.log('Incorrect answer')
-      score -=10
+      myScore -=10
       time -= 10
       index++
       index == listOfQuestions.length ? endHandler() : questionHandler(listOfQuestions)
       break;
     case 'correct':
       console.log('Correct answer')
-      score +=10
+      myScore +=10
       index++
       index == listOfQuestions.length ? endHandler() : questionHandler(listOfQuestions)
       break;
@@ -77,7 +77,7 @@ function endHandler(){
   console.log('endHandler was called')
   window.clearInterval(myTimer)
   document.getElementById('time').innerHTML = `Time Remaining: ${Math.floor(time / 60)} minutes ${time % 60} seconds`
-  let endMessage = `<div class = "text-center">\n <h1>Looks like the quiz is over!</h1>\n <p>Your final score is ${score}. ` 
+  let endMessage = `<div class = "text-center">\n <h1>Looks like the quiz is over!</h1>\n <p>Your final score is ${myScore}. ` 
   if(time>0){
     endMessage += `You completed the quiz with ${Math.floor(time / 60)} minutes ${time % 60} seconds of time remaining. </p>\n </div>`
   }
