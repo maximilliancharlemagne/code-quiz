@@ -1,7 +1,8 @@
 // a javascript file
 
 //Setting up some global variables
-let time = 0 //Time (in seconds) the user has been taking the quiz, for the timer
+let time = 600 //Time (in seconds) the user has remaining for the quiz
+let myTimer //timer variable
 let answered = false //Has the user answered this question?
 let index = 0 //What question are we on?
 let score = 0 //What is the player's current score?
@@ -31,6 +32,8 @@ function quizWrapper(){
   //Display the starting screen: just a "start the quiz" button for now
   document.getElementById('quiz').innerHTML = '<button type="button" onclick = "buttonHandler(`start`)" id="startBtn" class="btn btn-danger">Start the Quiz!</button>'
 
+  document.getElementById('time').innerHTML = `Time Remaining: ${Math.floor(time / 60)} minutes ${time % 60} seconds`
+
   //Write an event listener to listen to when the "Start the Quiz!" button is clicked
   // document.getElementById("startBtn").addEventListener("click", buttonHandler('start'));
 }
@@ -40,11 +43,12 @@ function buttonHandler(buttonType) {
   switch (buttonType) {
     case 'start':
       console.log('Start button pressed')
-      quizHandler()
+      quizHandler(false)
       break;
     case 'incorrect':
       console.log('Incorrect answer')
       score -=1
+      time -= 10
       index++
       index == listOfQuestions.length ? endHandler() : questionHandler(listOfQuestions)
       break;
@@ -62,25 +66,35 @@ function buttonHandler(buttonType) {
 
 function endHandler(){
   console.log('endHandler was called')
-  document.getElementById('quiz').innerHTML = `<div class = "text-left">\n <h1>Looks like the quiz is over!</h1>\n <p>Your final score is ${score}</p>\n </div>`
+  window.clearInterval(myTimer)
+  document.getElementById('time').innerHTML = `Time Remaining: ${Math.floor(time / 60)} minutes ${time % 60} seconds`
+  let endMessage = `<div class = "text-left">\n <h1>Looks like the quiz is over!</h1>\n <p>Your final score is ${score}. ` 
+  if(time>0){
+    endMessage += `You completed the quiz with ${Math.floor(time / 60)} minutes ${time % 60} seconds of time remaining. </p>\n </div>`
+  }
+  else{
+    endMessage += `You ran out of time! </p>\n </div>`
+  }
+  document.getElementById('quiz').innerHTML = endMessage
 }
 
 function quizHandler() {
   console.log('Quiz handler was called')
-
   //Start the timer
-  let myTimer = window.setInterval(timerUpdater, 1000)
-  
+  myTimer = window.setInterval(timerUpdater, 1000)
+
   //Display the questions
   questionHandler(listOfQuestions)
 
-  //Once all questions have been answered, display the user's score
 }
 
 function timerUpdater() {
-  time++
-  document.getElementById('time').innerHTML = `Time: ${time}`
+  time--
+  document.getElementById('time').innerHTML = `Time Remaining: ${Math.floor(time/60)} minutes ${time%60} seconds`
   console.log("Time updated")
+  if (time == 0){
+    endHandler()
+  }
 }
 
 function questionHandler(list_of_questions){
