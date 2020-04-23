@@ -3,7 +3,6 @@
 //Setting up some global variables
 let time = 600 //Time (in seconds) the user has remaining for the quiz
 let myTimer //timer variable
-let answered = false //Has the user answered this question?
 let index = 0 //What question are we on?
 let score = 0 //What is the player's current score?
 
@@ -21,9 +20,12 @@ class question {
 //Use the question class to make an object for each question
 const question1 = new question('Question 1', 'Which of the below is a valid keyword for declaring a variable in Javascript?', ['var', 'let', 'const', 'All of the above'], 3)
 const question2 = new question('Question 2', 'What will be the result of the following code? <br> <br> let num = 5 <br> let sum = num + 3 <br> console.log(sum)', ['3 will be logged to the console', '8 will be logged to the console', '2 will be logged to the console', 'The code will result in an error'], 1)
+const question3 = new question('Question 3', 'Which of the below is a valid data type in JavaScript?', ['long','float','Number','Mayonnaise'],2)
+const question4 = new question('Question 4', `What does the term 'function hoisting' mean?`,['When a function is declared, all the variables declared in the function are moved to the beginning of the file','When a function is declared, the function declaration is moved to the beginning of the file','When a function is declared, the function declaration is compiled before the other content in the file (but not actually moved to the top of the file)'],2)
+const question5 = new question('Question 5', 'What does the term \'API\' stand for?',['Application Programming Interface','Algorithm Performance Interface','Application Performance Interface','Algorithm Programming Interface'],0)
 
 //Make a list of all the questions
-let listOfQuestions = [question1, question2]
+let listOfQuestions = [question1, question2, question3, question4, question5]
 
 function quizWrapper(){
   console.log('Quiz wrapper activated')
@@ -44,14 +46,14 @@ function buttonHandler(buttonType) {
       break;
     case 'incorrect':
       console.log('Incorrect answer')
-      score -=1
+      score -=10
       time -= 10
       index++
       index == listOfQuestions.length ? endHandler() : questionHandler(listOfQuestions)
       break;
     case 'correct':
       console.log('Correct answer')
-      score +=1
+      score +=10
       index++
       index == listOfQuestions.length ? endHandler() : questionHandler(listOfQuestions)
       break;
