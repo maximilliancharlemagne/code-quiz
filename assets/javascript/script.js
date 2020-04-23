@@ -68,11 +68,19 @@ function buttonHandler(buttonType) {
       index++
       index == listOfQuestions.length ? endHandler() : questionHandler(listOfQuestions)
       break;
-
+    case 'submit':
+      console.log('Submitting high score')
+      //get the name from the form field
+      newHighScore = new highScore(name, myScore, time)
+      scores.push(newHighScore)
+      //write some stuff to the high score table
+      break;
     default:
       break;
   }
 }
+
+//
 
 function endHandler(){
   console.log('endHandler was called')
@@ -85,15 +93,13 @@ function endHandler(){
   else{
     endMessage += `You ran out of time! </p>\n </div>`
   }
-  newHighScore = new highScore(name,myScore,time)
-  scores.push(newHighScore)
   endMessage += `<br>`
   endMessage += `<form>
   <div class="form-group">
     <label for="exampleInputPassword1">Enter a name for the high score table</label>
     <input type="text" class="form-control" id="nameForTable" placeholder="Tom Bombadil">
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" onclick = "buttonHandler(submit)" class="btn btn-primary">Submit</button>
 </form>`
   document.getElementById('quiz').innerHTML = endMessage
 }
