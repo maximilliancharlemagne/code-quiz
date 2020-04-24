@@ -1,7 +1,8 @@
 // a javascript file
 
 //Setting up some global variables
-let time = 60 //Time (in seconds) the user has remaining for the quiz
+let time = 300 //Time (in seconds) the user has remaining for the quiz
+//time increased from 60 to 300 based on user feedback
 let myTimer //timer variable
 let index = 0 //What question are we on?
 let myScore = 0 //What is the player's current score?
