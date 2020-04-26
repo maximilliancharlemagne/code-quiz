@@ -117,17 +117,16 @@ function quizWrapper(){
   console.log('Quiz wrapper activated')
   index = 0
   console.log('Index reset')
-  time = 60
   console.log('Time reset')
   myScore = 0
   console.log('Score reset')
   //Handles the start of the quiz
   document.body.innerHTML = `  <div class="row mt-3">
     <div class="ml-5 col text-left">
-      <a onclick="highScoreHandler()" id="highScores" class="btn btn-primary">High Scores</a>
+      <a onclick="highScoreHandler()" id="highScores" class="btn btn-primary text-white">High Scores</a>
     </div>
     <div class="mr-5 col text-right">
-      <p id = "time">Time Remaining: 10 minutes 0 seconds</p>
+      <p id = "time">Time Remaining: ${Math.floor(time / 60)} minutes ${time % 60} seconds</p>
     </div>
   </div>
   <div class="row">
