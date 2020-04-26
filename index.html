@@ -1,34 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Code Quiz</title>
+  <title>quiz.ly</title>
+
+  <!-- Bootstrap stylesheet -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <!-- Custom stylesheet (unused) -->
   <link rel="stylesheet" href="./assets/css/style.css">
 </head>
+
 <body>
+  
+  <!-- The header row -->
   <div class="row mt-3">
+    <!-- The "High Scores" button on the left -->
     <div class="ml-5 col text-left">
-      <a onclick="highScoreHandler()" id="highScores" class="btn btn-primary">High Scores</a>
+      <a onclick="highScoreHandler()" id="highScores" class="btn btn-primary text-white">High Scores</a>
     </div>
+
+    <!-- The "Time Remaining:" text in the top right-
+      will be dynamically replaced by Javascript at page load time -->
     <div class="mr-5 col text-right">
-      <p id = "time">Time Remaining: 10 minutes 0 seconds</p>
+      <p id = "time">Time Remaining: X minutes X seconds</p>
     </div>
   </div>
+
+  <!-- The row containing the quiz -->
   <div class="row">
+    <!-- Quick breakdown of the Bootstrap classes:
+
+      col-<screen-size>-N:
+        A column of width N/12*width of the parent element. It will stack on top of other columns once the screen size is <screen-size> or less. Used here as a hacky way to get the quiz to be 1/2 the screen and centered on desktop but the full width of the screen on mobile.
+          
+      bg-light:
+        Utility class for background color "light" (a light grey).
+      
+      text-center:
+        Centers text and other inline elements within the div (like, for example,
+        a "Start the Quiz!" button).
+      
+      py-2:
+        Adds "2" (a unit defined relative to the spacer variable, which I have never
+        located or understood) padding in the y directions (up and down).
+      
+      mx-auto:
+        Sets margin in the x directions (left and right) to auto, thus centering the
+        element within its parent.
+      
+      -->
     <div class="col-md-3"></div>
-    <div id = "quiz" class="col-md-6 bg-light text-center py-2">
-      <!-- The quiz -->
+    <div id = "quiz" class="col-md-6 bg-light text-center py-2 mx-auto">
+      <!-- Quiz is dynamically generated here -->
     </div>
     <div class="col-md-3"></div>
+
   </div>
+
+  <!-- Bootstrap scripts -->
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  <!-- Custom script -->
   <script src="./assets/javascript/script.js"></script>
+
+  <!-- Run quizWrapper to properly start the control flow. -->
   <script>
     quizWrapper()
   </script>
+
+  <!-- End of body -->
 </body>
 </html>
