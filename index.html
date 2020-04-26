@@ -32,6 +32,9 @@
   <!-- The row containing the quiz -->
   <div class="row">
     <!-- Quick breakdown of the Bootstrap classes:
+
+      col-<screen-size>-N:
+        A column of width N/12*width of the parent element. It will stack on top of other columns once the screen size is <screen-size> or less. Used here as a hacky way to get the quiz to be 1/2 the screen and centered on desktop but the full width of the screen on mobile.
           
       bg-light:
         Utility class for background color "light" (a light grey).
@@ -49,10 +52,11 @@
         element within its parent.
       
       -->
-
-    <div id = "quiz" class="col bg-light text-center py-2 mx-auto">
+    <div class="col-md-3"></div>
+    <div id = "quiz" class="col-md-6 bg-light text-center py-2 mx-auto">
       <!-- Quiz is dynamically generated here -->
     </div>
+    <div class="col-md-3"></div>
 
   </div>
 
@@ -64,7 +68,7 @@
   <!-- Custom script -->
   <script src="./assets/javascript/script.js"></script>
 
-  <!-- Run quizWrapper to properly start the control flow -->
+  <!-- Run quizWrapper to properly start the control flow. -->
   <script>
     quizWrapper()
   </script>
