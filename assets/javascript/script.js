@@ -192,7 +192,7 @@ function highScoreHandler(){
   //Write the whole high score page to the current page
   document.body.innerHTML = `  <div class="row mt-3">
     <div class="ml-5 col text-left">
-      <a onclick="quizWrapper()" id="backToQuiz" class="btn btn-primary">Return to Quiz</a>
+      <a onclick="quizWrapper()" id="backToQuiz" class="btn btn-primary text-white">Return to Quiz</a>
     </div>
   </div>
   <div class="row">
