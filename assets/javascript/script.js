@@ -242,7 +242,7 @@ function highScoreHandler(){
             <th scope="row">${parseInt(index)+1}</th>\n
             <td>${scores[index].name}</td>\n
             <td>${scores[index].score}</td>\n
-            <td>${scores[index].time}</td>\n
+            <td>${Math.floor(scores[index].time / 60)} minutes ${scores[index].time % 60} seconds</td>\n
           </tr>\n`
   }
 
