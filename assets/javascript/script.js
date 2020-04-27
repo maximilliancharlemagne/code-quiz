@@ -42,10 +42,9 @@ let listOfQuestions = [question1, question2, question3, question4, question5]
 
 function quizWrapper() {
   //Handles the start of the quiz
-
-  //Resets index (of the current question), score, and time
   console.log('Quiz wrapper activated')
 
+  //Resets index (of the current question), score, and time
   index = 0
   console.log('Index reset')
 
